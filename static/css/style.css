@@ -1,0 +1,430 @@
+ * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        body {
+            height: 100vh;
+            overflow-x: hidden;
+            color: white;
+            position: relative;
+        }
+        
+        .slider-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .slider {
+            display: flex;
+            width: 300%;
+            height: 100%;
+            transition: transform 0.5s ease;
+        }
+        
+        .slide {
+            width: 33.333%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        
+        .slide::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.3);
+        }
+        
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 30px 50px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 10;
+            background-color: transparent;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: white;
+            letter-spacing: 1px;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 40px;
+            text-transform: uppercase; 
+            font-size: 14px;
+            letter-spacing: 1px;
+        }
+       a {
+            text-decoration: none;
+            color: white;
+            font-weight: 600;
+            padding: 0px 1rem;
+        }
+        
+        .content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            z-index: 1;
+            width: 100%;
+        }
+        
+        .main-title {
+            font-size: 60px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-weight: 400;
+        }
+        
+        .subtitle {
+            font-size: 18px;
+            margin-bottom: 30px;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+        }
+        
+        .divider {
+            width: 100px;
+            height: 2px;
+            background-color: white;
+            margin: 20px auto;
+        }
+        
+        .description {
+            font-size: 24px;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 400;
+            line-height: 1.4;
+        }
+        
+        .btn {
+            padding: 15px 40px;
+            background-color: transparent;
+            color: white;
+            border: 2px solid white;
+            border-radius: 0;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .btn:hover {
+            background-color: white;
+            color: black;
+        }
+        
+        .arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 40px;
+            color: white;
+            cursor: pointer;
+            z-index: 10;
+            padding: 20px;
+            user-select: none;
+        }
+        
+        .arrow-left {
+            left: 30px;
+        }
+        
+        .arrow-right {
+            right: 30px;
+        }
+        
+        .slide:nth-child(1) {
+            background-image: url('https://images.unsplash.com/photo-1501555088652-021faa106b9b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+        }
+        
+        .slide:nth-child(2) {
+            background-image: url('https://images.unsplash.com/photo-1464037866556-6812c9d1c72e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+        }
+        
+        .slide:nth-child(3) {
+            background-image: url('https://images.unsplash.com/photo-1506929562872-bb421503ef21?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+        }
+           
+               .melissa-section {
+            width: 100%;
+            min-height: 100vh;
+            /* background-image: url('https://images.unsplash.com/photo-1503220317375-aaad61436b1b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'); */
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+            position: relative;
+        }
+        
+        .melissa-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            /* background-color: rgba(0, 0, 0, 0.5); */
+        }
+        
+        .melissa-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            padding: 60px;
+            background-color: rgba(255, 255, 255, 0.9);
+            color: #333;
+            border-radius: 8px;
+        }
+        
+        .intro-title {
+            font-size: 28px;
+            letter-spacing: 3px;
+            margin-bottom: 15px;
+            font-weight: 400;
+            text-transform: uppercase;
+            color: #222;
+        }
+        
+        .intro-subtitle {
+            font-size: 20px;
+            letter-spacing: 3px;
+            margin-bottom: 40px;
+            font-weight: 400;
+            text-transform: uppercase;
+            color: #444;
+        }
+        
+        .intro-text {
+            font-size: 16px;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            text-align: center;
+            color: #555;
+        }
+        
+        .intro-signature {
+            font-size: 18px;
+            margin-top: 40px;
+            font-weight: 600;
+            color: #222;
+        }
+        img{
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+        }
+        .hero {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background-color: #020d1e;
+        padding: 60px 8%;
+        color: white;
+        flex-wrap: wrap;
+    }
+
+    .hero-text {
+        max-width: 500px;
+    }
+
+    .hero-text h1 {
+        font-family: 'Playfair Display', serif;
+        font-size: 42px;
+        margin-bottom: 15px;
+    }
+
+    .hero-text p {
+        font-size: 16px;
+        margin-bottom: 30px;
+        line-height: 1.6;
+    }
+
+    .hero-text a {
+        background-color: white;
+        color: #020d1e;
+        padding: 12px 25px;
+        border-radius: 6px;
+        text-decoration: none;
+        font-weight: bold;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .hero-image {
+        position: relative;
+    }
+
+    .hero-image img {
+        max-width: 300px;
+        height: auto;
+    }
+
+    /* Airplane path */
+    .plane-path {
+        position: absolute;
+        top: 0;
+        left: -200px;
+        width: 200px;
+        height: auto;
+    }
+
+    @media (max-width: 900px) {
+        .hero {
+            flex-direction: column;
+            text-align: center;
+        }
+        .hero-image {
+            margin-top: 30px;
+        }
+        .plane-path {
+            display: none;
+        }
+    }
+
+            .reviews-section {
+            width: 100%;
+            padding: 80px 20px;
+            background-color: #ffffff; /* Papyrus-like background */
+            /* background-image: url('https://i.ibb.co/7YfX9Lk/egyptian-pattern.png'); */
+            background-blend-mode: overlay;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-title {
+            font-size: 36px;
+            color: #0e0800; /* Egyptian gold */
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+        }
+        
+        .section-subtitle {
+            font-size: 18px;
+            color: #5a3921; /* Dark hieroglyphic brown */
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .reviews-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .review-card {
+            background: white;
+            /* border-radius: 50%; */
+            padding: 30px;
+            width: 350px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            position: relative;
+            border-top: 4px solid #0d0700;
+        }
+        
+        .review-card::before {
+            content: '""';
+            font-size: 80px;
+            color: rgba(193, 154, 107, 0.1);
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-family: serif;
+            line-height: 1;
+        }
+        
+        .review-text {
+            font-size: 16px;
+            line-height: 1.7;
+            color: #555;
+            margin-bottom: 25px;
+            font-style: italic;
+        }
+        
+        .reviewer {
+            display: flex;
+            align-items: center;
+        }
+        
+        .reviewer-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: 15px;
+            border: 2px solid #140b00;
+        }
+        
+        .reviewer-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .reviewer-info h4 {
+            color: #333;
+            margin-bottom: 5px;
+        }
+        
+        .reviewer-info p {
+            color: #160d01;
+            font-size: 14px;
+        }
+        
+        .rating {
+            color: #ffc107;
+            margin-top: 5px;
+            font-size: 14px;
+        }
+        
+        .review-date {
+            color: #999;
+            font-size: 12px;
+            margin-top: 3px;
+        }
+        
+        /* Hieroglyphic decorative elements */
+        .decorative-border {
+            height: 10px;
+            margin: 60px auto 0;
+            max-width: 800px;
+            opacity: 0.3;
+        }
