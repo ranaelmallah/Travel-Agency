@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>travella</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+{% block head %}{% endblock %}
+
+</head>
+<body>
+    
+    
+    <nav>
+        <div><a href="">logo</a></div>
+        <div class="navLinks">
+            <a href="">Home </a>
+            <a href="">About </a>
+            <a href="">Trips </a>
+            <a href=" ">Reviews </a>
+            <a href="">ContactUS </a>
+            <a href="">Login </a>
+            
+            
+            
+            
+        </div>
+    </nav>
+    
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    {% block body %} {% endblock %}
+
+</body>
+</html>
