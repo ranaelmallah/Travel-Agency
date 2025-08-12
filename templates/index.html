@@ -9,18 +9,7 @@
  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css"> 
 </head>
 <body>
-    <header>
-        <div class="logo">DESTINATION</div>
-        <nav>
-            <ul>
-            <a href="">Home </a>
-            <a href="">About </a>
-            <a href="">Trips </a>
-            <a href=" ">Reviews </a>
-            <a href="">Login </a> 
-            </ul>
-        </nav>
-    </header>
+    {%include 'nav.html'%}
     
     <section class="slider-container">
         <div class="slider">
@@ -79,9 +68,11 @@
 
 
 <!-- Featured Trips Cards -->
+{%if trips %}
+<section>
 <div class="section-title text-center">Avilable Trips</div>
     <div class="row row-cols-1 row-cols-md-3 g-4 p-5 m-5">
-        {% for trip in featured_trips %}
+        {% for trip in trips %}
         <div class="col">
             <div class="card h-100 shadow-sm">
                 <img src="{{ trip.img }}" class="card-img-top" alt="{{ trip.tripTitle }}" style="height: 200px; object-fit: cover;">
@@ -105,15 +96,15 @@
         </div>
         {% endfor %}
     </div>
-
-    <!-- Show More Button -->
     <div class="text-center m-5">
         <a href="{{ url_for('all_trips') }}" class="btn btn-dark px-4">
             Show More Trips <i class="bi bi-arrow-right"></i>
         </a>
     </div>
-</div>
-
+    </div>
+{% endif %}
+    <!-- Show More Button -->
+</section>
 
     <section class="hero">
     <div class="hero-text">
@@ -197,7 +188,7 @@
     </section>
 
 
-    <button  class="btn bg-black wigth text-white"> rana</button>
+ 
     <script src="../static/js/main.js"></script>
      <script  src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"> </script>
 </body>

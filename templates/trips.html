@@ -8,10 +8,12 @@
      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
 </head>
 <body>
+    {%include 'nav.html'%}
     <div class="container py-5">
-        <h1 class="text-center mb-5">Discover Amazing Trips in Egypt</h1>
         
         <div class="row">
+            {% if trips %}
+            <h1 class="text-center mb-5">Discover Amazing Trips in Egypt</h1>
             {% for trip in trips %}
             <div class="col-md-4">
                 <div class="card trip-card">
@@ -31,6 +33,13 @@
                 </div>
             </div>
             {% endfor %}
+        {% else %}
+            <div class="d-flex flex-column justify-content-center align-items-center w-100" style="height: 300px;">
+    <i class="bi bi-exclamation-circle text-muted" style="font-size: 4rem;"></i>
+    <p class="text-muted fs-4 mt-3">No trips available right now.</p>
+    <small class="text-muted">Please check back later for new adventures!</small>
+  </div>
+        {% endif %}
         </div>
     </div>
 
