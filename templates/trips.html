@@ -4,35 +4,47 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Egyptian Trips</title>
+    
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
-</head>
+     <link rel="stylesheet" href="../static/css/trips.css">
+
+      <!--fonts  -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200&family=Josefin+Sans:wght@400;500;600&family=PT+Sans&display=swap" rel="stylesheet">
+    
+    </head>
 <body>
     {%include 'nav.html'%}
-    <div class="container py-5">
-        
-        <div class="row">
+    <!-- trips section  -->
+    <div class=" py-5">
+        <div class="row p-5">
             {% if trips %}
-            <h1 class="text-center mb-5">Discover Amazing Trips in Egypt</h1>
-            {% for trip in trips %}
-            <div class="col-md-4">
-                <div class="card trip-card">
-                    <img src="{{ trip.img }}" class="card-img-top trip-img" alt="{{ trip.tripTitle }}">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ trip.tripTitle }}</h5>
-                        <p class="text-muted">
-                            <i class="bi bi-geo-alt"></i> {{ trip.location }} | 
-                            <i class="bi bi-calendar"></i> {{ trip.date }} at {{ trip.hour }}
-                        </p>
-                        <p class="card-text">{{ trip.description }}</p>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <h5 class="text-dark mb-0">${{ trip.price }}</h5>
-                            <button class="btn btn-dark">Book Now</button>
-                        </div>
+            <h1 class="text-center text-dark my-5">Discover Amazing Trips in Egypt</h1>
+           {% for trip in trips %}
+        <div class="col-md-4 col-sm-6">
+            <div class="card h-100 shadow-sm">
+                <img src="{{ trip.img }}" class="card-img-top" alt="{{ trip.tripTitle }}" style="height: 200px; object-fit: cover;">
+                <div class="card-body">
+                    <h2 class="card-title ">{{ trip.title }}</h2>
+                    <p class="card-text text-muted fs-4">
+                     
+                            <i class="bi bi-geo-alt-fill fs-4 "></i> {{ trip.location }}<br>
+                            <i class="bi bi-calendar-event"></i> {{ trip.date }}
+                        
+                    </p>
+                    <p class="card-text">``{{ trip.description }}``</p>
+                </div>
+                <div class="card-footer bg-white border-0">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <span class="h5 text-dark mb-0"><b>Cost :</b> ${{ trip.price }}</span>
+                        <a href="#" class="btn btn-sm btn-dark">Book</a>
                     </div>
                 </div>
             </div>
-            {% endfor %}
+        </div>
+        {% endfor %}
         {% else %}
             <div class="d-flex flex-column justify-content-center align-items-center w-100" style="height: 300px;">
     <i class="bi bi-exclamation-circle text-muted" style="font-size: 4rem;"></i>

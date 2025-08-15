@@ -12,3 +12,14 @@
         }, false);
     });
 })();
+
+document.addEventListener("DOMContentLoaded", () => {
+    const adminName = localStorage.getItem("adminName");
+
+    if (adminName) {
+        document.getElementById("welcome-message").innerText = `Welcome ${adminName}`;
+    } else {
+        // If not logged in, send back to login page
+        window.location.href = "/login";
+    }
+});

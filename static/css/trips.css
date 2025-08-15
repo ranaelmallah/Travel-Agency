@@ -1,3 +1,8 @@
+body {
+    overflow-x:hidden;
+     font-family: 'Josefin Sans', sans-serif;
+     background-color: rgb(75, 93, 109);
+}
 .trip-card {
             transition: transform 0.3s;
             margin-bottom: 20px;
@@ -10,3 +15,10 @@
             height: 200px;
             /* object-fit: cover; */
         }
+        .card {
+  width: 100%;
+}
+.card img {
+  height: 200px; /* same height for all images */
+  object-fit: cover;
+}

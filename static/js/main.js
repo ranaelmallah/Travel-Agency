@@ -1,98 +1,31 @@
-// let loginForm =document.getElementById("loginForm")
-// if(loginForm){
-//     loginForm.addEventListener("submit",function(e){
-//  e.preventDefault();
+document.addEventListener('DOMContentLoaded', function() {
+  const navbarToggler = document.querySelector('.navbar-toggler');
+  const navbarCollapse = document.getElementById('navbarNav');
 
-//      let submit=document.querySelector(".submit")
-//      submit.classList.add("disabled")
-
-//      let hasError=false
-//     let username=document.getElementById("username").value.trim()
-//     let password=document.getElementById("password").value.trim()
-
-//     let usernameError=document.getElementById("usernameError")
-//     let passwordError=document.getElementById("passwordError")
-
-//     usernameError.innerHTML = " ";
-//     passwordError.innerHTML = " ";
+  navbarToggler.addEventListener('click', function() {
+    const isExpanded = this.getAttribute('aria-expanded') === 'true';
     
-
-//     if (username===''){
-//         usernameError.innerHTML="Username is required"
-//         hasError=true
-//     }
-//      if(password===''){
-//         passwordError.innerHTML="Password is required"
-//         hasError=true
-
-//     }
-
-
-// if(!hasError){
-//     loginForm.submit()
-// }else{
-//     submit.classList.remove("disabled");
-// }
-
-// })
-// }
-
-// // validation of signup
-// let signupForm =document.getElementById("signupForm")
-// if (signupForm){
-//     signupForm.addEventListener("submit",function(e){
-//         //  e.preventDefault()    
-//     let submit=document.querySelector(".submit")
-//     submit.classList.add("disabled")
-//     let username=document.getElementById("username").value.trim()
-//     let password=document.getElementById("password").value.trim()
-//     let confirmPassword=document.getElementById("confirmPassword").value.trim()
-//     let country=document.getElementById("country").value.trim()
-
-//     let usernameError=document.getElementById("usernameError")
-//     let passwordError=document.getElementById("passwordError")
-//     let confirmPasswordError=document.getElementById("confirmPasswordError")
-//     let countryError=document.getElementById('countryError')
-  
+    // Toggle icons
+    const openIcon = this.querySelector('.navbar-toggler-icon-open');
+    const closeIcon = this.querySelector('.navbar-toggler-icon-close');
     
-//     usernameError.innerHTML= " ";
-//     passwordError.innerHTML= " ";
-//     countryError.innerHTML=" ";
-//     confirmPasswordError.innerHTML = " ";
+    if (isExpanded) {
+      openIcon.style.display = 'inline-block';
+      closeIcon.style.display = 'none';
+    } else {
+      openIcon.style.display = 'none';
+      closeIcon.style.display = 'inline-block';
+    }
+  });
 
-//     let isValid=true
-
-//     if ( username ===''||username.length<=1){
-//         usernameError.innerHTML="Invalid Name"
-//         isValid=false
-//     }
-//      if(password===''||password.length<=6){
-//         passwordError.innerHTML="Invalid password"
-//         isValid=false
-//     }
-//     if(country===''){
-//        countryError.innerHTML="please Enter your country"
-//         isValid=false
-// }
-// if (confirmPassword!==password){
-// confirmPasswordError.innerHTML="password  does not match" 
-// isValid=false
-// }
-// if (isValid){
-//     localStorage.setItem("username",username)
-//     localStorage.setItem("password",password)
-//     localStorage.setItem("country",country)
-//     alert("data saved successfuly")
-     
-   
-// }
-// else {
-//             e.preventDefault();
-//             submit.classList.remove("disabled");
-//         }
-
-// })
-// }
+  // Optional: Reset icon when collapsing via other means (e.g., clicking a link)
+  navbarCollapse.addEventListener('hidden.bs.collapse', function() {
+    const openIcon = navbarToggler.querySelector('.navbar-toggler-icon-open');
+    const closeIcon = navbarToggler.querySelector('.navbar-toggler-icon-close');
+    openIcon.style.display = 'inline-block';
+    closeIcon.style.display = 'none';
+  });
+});
 
  document.addEventListener('DOMContentLoaded', function() {
             const slider = document.querySelector('.slider');
@@ -145,9 +78,30 @@
             // Start the slider
             startSlider();
         });
-        
-    window.addEventListener('scroll', function() {
-        let navbar = document.querySelector('.custom-navbar');
-        navbar.classList.toggle('scrolled', window.scrollY > 50);
-    });
+//   document.querySelector('.close-btn').addEventListener('click', () => {
+//   document.querySelector('.sidebar').style.display = 'none';
+// });
+    // window.addEventListener('scroll', function() {
+    //     let navbar = document.querySelector('.custom-navbar');
+    //     navbar.classList.toggle('scrolled', window.scrollY > 50);
+    // });
 
+
+     document.addEventListener('DOMContentLoaded', function() {
+            // Animate stat boxes
+            const statBoxes = document.querySelectorAll('.stat-box');
+            statBoxes.forEach((box, index) => {
+                setTimeout(() => {
+                    box.classList.add('animate');
+                }, 200 * index);
+            });
+            
+           
+            
+            // Floating animation for stats
+            setInterval(() => {
+                statBoxes.forEach(box => {
+                    box.classList.toggle('floating');
+                });
+            }, 3000);
+        });

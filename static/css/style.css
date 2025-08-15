@@ -1,696 +1,788 @@
+:root {
+        --primary-color: #020e1a;
+        --secondary-color: #000000;
+        --accent-color: #095248;
+    }
  * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Arial', sans-serif;
-        }
+     margin: 0;
+     padding: 0;
+     box-sizing: border-box;
+     font-family: 'Arial', sans-serif;
+     font-family: 'Josefin Sans', sans-serif;
+ }
         
-        body {
-            height: 100vh;
-            overflow-x: hidden;
-            color: white;
-            position: relative;
-        }
-        
-        .slider-container {
-            position: relative;
-            width: 100%;
-            height: 100%;
-        }
-        
-        .slider {
-            display: flex;
-            width: 300%;
-            height: 100%;
-            transition: transform 0.5s ease;
-        }
-        
-        .slide {
-            width: 33.333%;
-            height: 100%;
-            background-size: cover;
-            background-position: center;
-            position: relative;
-        }
-        
-        .slide::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.3);
-        }
-        
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 30px 50px;
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 10;
-            background-color: transparent;
-        }
-        
-        .logo {
-            font-size: 28px;
-            font-weight: bold;
-            color: white;
-            letter-spacing: 1px;
-        }
-        
-       /* Transparent navbar style */
-.custom-navbar {
-    background: transparent;
-    transition: background-color 0.3s ease, box-shadow 0.3s ease;
-    font-family: 'Helvetica Neue', sans-serif;
-    font-size: 15px;
-    letter-spacing: 1px;
-}
+ body {
+     height: 100vh;
+     overflow-x: hidden;
+    
+     position: relative;
+ }
+ 
 
-.custom-navbar .nav-link {
-    color: white;
-    padding: 10px 15px;
-    text-transform: uppercase;
-}
 
-.custom-navbar .nav-link:hover {
-    color: #f05a28;
-}
 
-/* Logo Style */
-.brand-logo {
-    font-family: 'Brush Script MT', cursive;
-    font-size: 28px;
-    color: white;
-    letter-spacing: 1px;
-}
 
-.brand-logo:hover {
-    color: #f05a28;
-}
 
-/* Navbar background on scroll */
-.scrolled {
-    background-color: white !important;
-    box-shadow: 0px 2px 5px rgba(0,0,0,0.1);
-}
 
-.scrolled .nav-link {
-    color: black !important;
-}
+ /*======================== slider style======================= */
+ .slider-container {
+     position: relative;
+     width: 100%;
+     height: 100%;
+ }
 
-.scrolled .brand-logo {
-    color: black !important;
-}
+ .slider {
+     display: flex;
+     width: 300%;
+     height: 100%;
+     transition: transform 0.5s ease;
+ }
 
-        .content {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            text-align: center;
-            z-index: 1;
-            width: 100%;
-        }
-        
-        .main-title {
-            font-size: 60px;
-            margin-bottom: 20px;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            font-weight: 400;
-        }
-        
-        .subtitle {
-            font-size: 18px;
-            margin-bottom: 30px;
-            letter-spacing: 5px;
-            text-transform: uppercase;
-        }
-        
-        .divider {
-            width: 100px;
-            height: 2px;
-            background-color: white;
-            margin: 20px auto;
-        }
-        
-        .description {
-            font-size: 24px;
-            margin-bottom: 30px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-weight: 400;
-            line-height: 1.4;
-        }
-        
-        .btn {
-            padding: 15px 40px;
-            background-color: transparent;
-            color: white;
-            border: 2px solid white;
-            border-radius: 0;
-            font-size: 14px;
-            cursor: pointer;
-            transition: all 0.3s;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-        
-        .btn:hover {
-            background-color: white;
-            color: black;
-        }
-        
-        .arrow {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 40px;
-            color: white;
-            cursor: pointer;
-            z-index: 10;
-            padding: 20px;
-            user-select: none;
-        }
-        
-        .arrow-left {
-            left: 30px;
-        }
-        
-        .arrow-right {
-            right: 30px;
-        }
-        
-        .slide:nth-child(1) {
-            background-image: url('https://i.pinimg.com/736x/b7/73/17/b77317d77183425014351964934436fd.jpg');
-        }
-        
-        .slide:nth-child(2) {
-            background-image: url('https://images.unsplash.com/photo-1464037866556-6812c9d1c72e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
-        }
-        
-        .slide:nth-child(3) {
-            background-image: url('https://images.unsplash.com/photo-1506929562872-bb421503ef21?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
-        }
-           
-               .melissa-section {
-            width: 100%;
-            min-height: 100vh;
-            /* background-image: url('https://images.unsplash.com/photo-1503220317375-aaad61436b1b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'); */
-            background-size: cover;
-            background-position: center;
-            color: white;
-            text-align: center;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 40px;
-            position: relative;
-        }
-        
-        .melissa-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            /* background-color: rgba(0, 0, 0, 0.5); */
-        }
-        
-        .melissa-content {
-            position: relative;
-            z-index: 1;
-            max-width: 800px;
-            padding: 60px;
-            background-color: rgba(255, 255, 255, 0.9);
-            color: #333;
-            border-radius: 8px;
-        }
-        
-        .intro-title {
-            font-size: 28px;
-            letter-spacing: 3px;
-            margin-bottom: 15px;
-            font-weight: 400;
-            text-transform: uppercase;
-            color: #222;
-        }
-        
-        .intro-subtitle {
-            font-size: 20px;
-            letter-spacing: 3px;
-            margin-bottom: 40px;
-            font-weight: 400;
-            text-transform: uppercase;
-            color: #444;
-        }
-        
-        .intro-text {
-            font-size: 16px;
-            line-height: 1.8;
-            margin-bottom: 20px;
-            text-align: center;
-            color: #555;
-        }
-        
-        .intro-signature {
-            font-size: 18px;
-            margin-top: 40px;
-            font-weight: 600;
-            color: #222;
-        }
-        img{
-            width: 500px;
-            height: 500px;
-            border-radius: 50%;
-        }
-        .hero {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        background-color: #020d1e;
-        padding: 60px 8%;
-        color: white;
-        flex-wrap: wrap;
+ .slide {
+     width: 33.333%;
+     height: 100%;
+     background-size: cover;
+     background-position: center;
+     position: relative;
+ }
+
+ .slide::before {
+     content: '';
+     position: absolute;
+     top: 0;
+     left: 0;
+     width: 100%;
+     height: 100%;
+     background: rgba(0, 0, 0, 0.3);
+ }
+
+/* silder style */
+ .content {
+     position: absolute;
+     top: 50%;
+     left: 50%;
+     transform: translate(-50%, -50%);
+     text-align: center;
+     z-index: 1;
+     width: 100%;
+     color: white;
+ }
+
+ .main-title {
+     font-size: 60px;
+     margin-bottom: 20px;
+     text-transform: uppercase;
+     letter-spacing: 3px;
+     font-weight: 400;
+ }
+
+ .subtitle {
+     font-size: 18px;
+     margin-bottom: 30px;
+     letter-spacing: 5px;
+     text-transform: uppercase;
+     color: white;
+
+ }
+
+ /* .divider {
+     width: 100px;
+     height: 2px;
+     background-color: white;
+     margin: 20px auto;
+ } */
+
+ .description {
+     font-size: 24px;
+     margin-bottom: 30px;
+     text-transform: uppercase;
+     letter-spacing: 2px;
+     font-weight: 400;
+     line-height: 1.4;
+ }
+
+ .btn {
+     padding: 15px 40px;
+     background-color: transparent;
+     color: white;
+     border: 2px solid white;
+     border-radius: 0;
+     font-size: 14px;
+     cursor: pointer;
+     transition: all 0.3s;
+     text-transform: uppercase;
+     letter-spacing: 2px;
+ }
+
+ .btn:hover {
+     background-color: white;
+     color: black;
+ }
+
+ .arrow {
+     position: absolute;
+     top: 50%;
+     transform: translateY(-50%);
+     font-size: 40px;
+     color: white;
+     cursor: pointer;
+     z-index: 10;
+     padding: 20px;
+     user-select: none;
+ }
+
+ .arrow-left {
+     left: 30px;
+ }
+
+ .arrow-right {
+     right: 30px;
+ }
+
+ .slide:nth-child(1) {
+     background-image: url('https://i.pinimg.com/736x/b7/73/17/b77317d77183425014351964934436fd.jpg');
+ }
+
+ .slide:nth-child(2) {
+     background-image: url('https://webredox.net/demo/wp/travol/catalog/wp-content/uploads/sites/2/2022/07/15.jpg');
+ }
+
+ .slide:nth-child(3) {
+     background-image: url('https://images.unsplash.com/photo-1506929562872-bb421503ef21?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+ }
+/* about style */
+ .melissa-section {
+     width: 100%;
+     min-height: 100vh;
+     background-size: cover;
+     background-position: center;
+     color: rgb(21, 1, 1);
+     text-align: center;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     padding: 40px;
+     position: relative;
+ }
+
+ .melissa-section::before {
+     content: '';
+     position: absolute;
+     top: 0;
+     left: 0;
+     width: 100%;
+     height: 100%;
+     /* background-color: rgba(0, 0, 0, 0.5); */
+ }
+
+ .melissa-content {
+     position: relative;
+     z-index: 1;
+     max-width: 900px;
+     padding: 60px;
+     /* background-color: rgba(176, 169, 169, 0.9); */
+     color: #080000;
+     border-radius: 8px;
+ }
+
+ .intro-title {
+     font-size: 28px;
+     letter-spacing: 3px;
+     margin-bottom: 15px;
+     font-weight: 400;
+     text-transform: uppercase;
+     /* color: #f9f8f8; */
+ }
+
+ .intro-subtitle {
+     font-size: 20px;
+     letter-spacing: 3px;
+     margin-bottom: 40px;
+     font-weight: 400;
+     text-transform: uppercase;
+     color: #100000;
+ }
+
+ .intro-text {
+     font-size: 16px;
+     line-height: 1.8;
+     margin-bottom: 20px;
+     text-align: center;
+     color: #555;
+ }
+
+ .intro-signature {
+     font-size: 18px;
+     margin-top: 40px;
+     font-weight: 600;
+     color: #222;
+ }
+
+ img {
+     width: 500px;
+     height: 500px;
+     z-index: 1000;
+     border-radius: 50%;
+ }
+
+ .hero {
+     display: flex;
+     align-items: center;
+     justify-content: space-between;
+     background-color: #020d1e;
+     padding: 60px 8%;
+     color: white;
+     flex-wrap: wrap;
+ }
+
+ .hero-text {
+     max-width: 500px;
+ }
+
+ .hero-text h1 {
+     font-family: 'Playfair Display', serif;
+     font-size: 42px;
+     margin-bottom: 15px;
+ }
+
+ .hero-text p {
+     font-size: 16px;
+     margin-bottom: 30px;
+     line-height: 1.6;
+ }
+
+ .hero-text a {
+     background-color: white;
+     color: #020d1e;
+     padding: 12px 25px;
+     border-radius: 6px;
+     text-decoration: none;
+     font-weight: bold;
+     display: inline-flex;
+     align-items: center;
+     gap: 8px;
+ }
+
+ .hero-image {
+     position: relative;
+ }
+
+ .hero-image img {
+     max-width: 300px;
+     height: auto;
+ }
+/* Responsive adjustments */
+@media (max-width: 992px) {
+    .hero {
+        flex-direction: column;
+        text-align: center;
+        padding: 40px 5%;
     }
 
     .hero-text {
-        max-width: 500px;
-    }
-
-    .hero-text h1 {
-        font-family: 'Playfair Display', serif;
-        font-size: 42px;
-        margin-bottom: 15px;
-    }
-
-    .hero-text p {
-        font-size: 16px;
+        max-width: 100%;
         margin-bottom: 30px;
-        line-height: 1.6;
-    }
-
-    .hero-text a {
-        background-color: white;
-        color: #020d1e;
-        padding: 12px 25px;
-        border-radius: 6px;
-        text-decoration: none;
-        font-weight: bold;
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-    }
-
-    .hero-image {
-        position: relative;
     }
 
     .hero-image img {
-        max-width: 300px;
-        height: auto;
+        max-width: 250px;
     }
-
-    /* Airplane path */
-    .plane-path {
-        position: absolute;
-        top: 0;
-        left: -200px;
-        width: 200px;
-        height: auto;
-    }
-
-    @media (max-width: 900px) {
-        .hero {
-            flex-direction: column;
-            text-align: center;
-        }
-        .hero-image {
-            margin-top: 30px;
-        }
-        .plane-path {
-            display: none;
-        }
-    }
-
-            .reviews-section {
-            width: 100%;
-            padding: 80px 20px;
-            background-color: #ffffff; /* Papyrus-like background */
-            /* background-image: url('https://i.ibb.co/7YfX9Lk/egyptian-pattern.png'); */
-            background-blend-mode: overlay;
-        }
-        
-        .section-header {
-            text-align: center;
-            margin-bottom: 50px;
-        }
-        
-        .section-title {
-            font-size: 36px;
-            color: #0e0800; /* Egyptian gold */
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 15px;
-        }
-        
-        .section-subtitle {
-            font-size: 18px;
-            color: #5a3921; /* Dark hieroglyphic brown */
-            max-width: 700px;
-            margin: 0 auto;
-        }
-        
-        .reviews-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 30px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        .review-card {
-            background: white;
-            /* border-radius: 50%; */
-            padding: 30px;
-            width: 350px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            position: relative;
-            border-top: 4px solid #0d0700;
-        }
-        
-        .review-card::before {
-            content: '""';
-            font-size: 80px;
-            color: rgba(193, 154, 107, 0.1);
-            position: absolute;
-            top: 10px;
-            right: 20px;
-            font-family: serif;
-            line-height: 1;
-        }
-        
-        .review-text {
-            font-size: 16px;
-            line-height: 1.7;
-            color: #555;
-            margin-bottom: 25px;
-            font-style: italic;
-        }
-        
-        .reviewer {
-            display: flex;
-            align-items: center;
-        }
-        
-        .reviewer-avatar {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            overflow: hidden;
-            margin-right: 15px;
-            border: 2px solid #140b00;
-        }
-        
-        .reviewer-avatar img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        
-        .reviewer-info h4 {
-            color: #333;
-            margin-bottom: 5px;
-        }
-        
-        .reviewer-info p {
-            color: #160d01;
-            font-size: 14px;
-        }
-        
-        .rating {
-            color: #ffc107;
-            margin-top: 5px;
-            font-size: 14px;
-        }
-        
-        .review-date {
-            color: #999;
-            font-size: 12px;
-            margin-top: 3px;
-        }
-        
-        /* Hieroglyphic decorative elements */
-        .decorative-border {
-            height: 10px;
-            margin: 60px auto 0;
-            max-width: 800px;
-            opacity: 0.3;
-        }/* style.css */
-body {
-    background-color: #f8f9fa;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* Navigation styling (assuming you have nav.html) */
-.navbar {
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-/* Form styling */
-form {
-    background-color: white;
-    padding: 2rem;
-    border-radius: 8px;
-    box-shadow: 0 0 15px rgba(0,0,0,0.05);
-    margin-bottom: 3rem;
-}
-
-.form-label {
-    font-weight: 600;
-    color: #495057;
-}
-
-.form-control {
-    border: 1px solid #ced4da;
-    padding: 0.5rem 0.75rem;
-    border-radius: 4px;
-}
-
-.form-control:focus {
-    border-color: #86b7fe;
-    box-shadow: 0 0 0 0.25rem rgba(13,110,253,0.25);
-}
-
-.btn-dark {
-    background-color: #212529;
-    padding: 0.5rem 1.5rem;
-    font-weight: 500;
-    transition: all 0.3s ease;
-}
-
-.btn-dark:hover {
-    background-color: #424649;
-    transform: translateY(-1px);
-}
-
-/* Trip cards styling */
-h2 {
-    margin-bottom: 2rem;
-    color: #212529;
-    font-weight: 600;
-    position: relative;
-    padding-bottom: 0.5rem;
-}
-
-h2::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 60px;
-    height: 3px;
-    background-color: #212529;
-}
-
-.trip-card {
-    margin-bottom: 2rem;
-    border: none;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    height: 100%;
-}
-
-.trip-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-}
-
-.card-img {
-    height: 200px;
-    object-fit: cover;
-    width: 100%;
-}
-
-.card-body {
-    padding: 1.5rem;
-}
-
-.card-title {
-    font-weight: 600;
-    margin-bottom: 1rem;
-    color: #212529;
-}
-
-.card-text {
-    color: #6c757d;
-    margin-bottom: 1.5rem;
-}
-
-.text-muted {
-    margin-bottom: 1rem;
-    display: block;
-}
-
-/* Buttons in cards */
-.btn-outline-success, .btn-outline-danger {
-    padding: 0.25rem 0.75rem;
-    font-size: 0.875rem;
-    transition: all 0.3s ease;
-}
-
-.btn-outline-success:hover {
-    background-color: #198754;
-    color: white;
-}
-
-.btn-outline-danger:hover {
-    background-color: #dc3545;
-    color: white;
-}
-
-/* Responsive adjustments */
 @media (max-width: 768px) {
-    .col-md-4 {
-        flex: 0 0 100%;
-        max-width: 100%;
+    img {
+        width: 300px;
+        height: 300px;
     }
-    
-    form {
-        padding: 1.5rem;
+
+    .hero-text h1 {
+        font-size: 32px;
+    }
+
+    .hero-text p {
+        font-size: 14px;
+    }
+
+    .hero-text a {
+        padding: 10px 20px;
+        font-size: 14px;
     }
 }
 
-/* Validation styling */
-.is-invalid {
-    border-color: #dc3545;
+@media (max-width: 480px) {
+    img {
+        width: 220px;
+        height: 220px;
+    }
+
+    .hero-text h1 {
+        font-size: 26px;
+    }
+
+    .hero-text p {
+        font-size: 13px;
+    }
 }
 
-.invalid-feedback {
-    color: #dc3545;
-    font-size: 0.875rem;
-    margin-top: 0.25rem;
+ /* Airplane path */
+ .plane-path {
+     position: absolute;
+     top: 0;
+     left: -200px;
+     width: 200px;
+     height: auto;
+ }
+
+ @media (max-width: 900px) {
+     .hero {
+         flex-direction: column;
+         text-align: center;
+     }
+
+     .hero-image {
+         margin-top: 30px;
+     }
+
+     .plane-path {
+         display: none;
+     }
+ }
+
+ .reviews-section {
+     width: 100%;
+     padding: 80px 20px;
+     background-color: #ffffff;
+     /* Papyrus-like background */
+     /* background-image: url('https://i.ibb.co/7YfX9Lk/egyptian-pattern.png'); */
+     background-blend-mode: overlay;
+ }
+
+ .section-header {
+     text-align: center;
+     margin-bottom: 50px;
+ }
+
+ .section-title {
+     font-size: 36px;
+     color: #0e0800;
+     /* Egyptian gold */
+     text-transform: uppercase;
+     letter-spacing: 2px;
+     /* margin-bottom: 15px; */
+ }
+
+ .section-subtitle {
+     font-size: 18px;
+     color: #5a3921;
+     /* Dark hieroglyphic brown */
+     max-width: 700px;
+     margin: 0 auto;
+ }
+
+ .reviews-container {
+     display: flex;
+     flex-wrap: wrap;
+     justify-content: center;
+     gap: 30px;
+     max-width: 1200px;
+     margin: 0 auto;
+ }
+.card{
+    border: none;
+    transition: transform 1s;
 }
-
-/* Image URL input styling */
-input[type="text"][name="img"] {
-    width: 100%;
-    padding: 0.5rem 0.75rem;
-    border: 1px solid #ced4da;
-    border-radius: 4px;
-}
-
-/* Price input styling */
-#price {
-    max-width: 200px;
-}
+.card:hover {
+            transform: translateY(-5px);
+        }
 
 
+ /* Stats Section */
+        .stats-section {
+            padding: 80px 0;
+           background-image: url("https://webredox.net/demo/wp/travol/catalog/wp-content/uploads/sites/2/2022/07/15.jpg");
+            color: white;
+           background-repeat: no-repeat;
+           background-size: cover;
+           background-attachment: fixed;
+        }
+        
+        .stat-box {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 30px;
+            margin: 15px 0;
+            text-align: center;
+            transition: all 0.5s;
+            opacity: 0;
+            transform: translateY(50px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .stat-box.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .stat-number {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: white;
+        }
+        
+        .stat-title {
+            font-size: 1.2rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
 
-/* Main card container */
-.travel-inspiration-card {
-    background-color: #ffffff;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 30px;
-    max-width: 350px;
-    margin: 20px;
-    font-family: 'Arial', sans-serif;
-    position: relative;
-    overflow: hidden;
-}
+ .review-card {
+     background: white;
+     /* border-radius: 50%; */
+     padding: 30px;
+     width: 350px;
+     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+     position: relative;
+     border-top: 4px solid #0d0700;
+ }
 
-/* Canada heading */
-.travel-inspiration-card h1 {
-    color: #2c3e50;
-    font-size: 32px;
-    font-weight: 700;
-    margin-bottom: 25px;
-    letter-spacing: 0.5px;
-}
+ /* .review-card::before {
+     content: '""';
+     font-size: 80px;
+     color: rgba(193, 154, 107, 0.1);
+     position: absolute;
+     top: 10px;
+     right: 20px;
+     font-family: serif;
+     line-height: 1;
+ } */
 
-/* Books to inspire your travels subtitle */
-.travel-inspiration-card h2 {
-    color: #7f8c8d;
-    font-size: 14px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-bottom: 5px;
-}
+ .review-text {
+     font-size: 16px;
+     line-height: 1.7;
+     color: #555;
+     margin-bottom: 25px;
+     font-style: italic;
+ }
 
-/* Wanderlust title */
-.travel-inspiration-card h3 {
-    color: #e74c3c;
-    font-size: 24px;
-    font-weight: 700;
-    margin-bottom: 20px;
-    letter-spacing: 0.5px;
-}
+ .reviewer {
+     display: flex;
+     align-items: center;
+ }
 
-/* Lorem ipsum text */
-.travel-inspiration-card p {
-    color: #34495e;
-    font-size: 16px;
-    line-height: 1.6;
-    margin-bottom: 25px;
-    font-style: italic;
-}
+ .reviewer-avatar {
+     width: 50px;
+     height: 50px;
+     border-radius: 50%;
+     overflow: hidden;
+     margin-right: 15px;
+     border: 2px solid #140b00;
+ }
 
-/* Keep reading link */
-.travel-inspiration-card .read-more {
-    color: #e74c3c;
-    font-size: 14px;
-    font-weight: 600;
-    text-decoration: none;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    display: inline-block;
-    transition: all 0.3s ease;
-}
+ .reviewer-avatar img {
+     width: 100%;
+     height: 100%;
+     object-fit: cover;
+ }
 
-.travel-inspiration-card .read-more:hover {
-    color: #c0392b;
-    transform: translateX(5px);
-}
+ .reviewer-info h4 {
+     color: #333;
+     margin-bottom: 5px;
+ }
 
-/* Optional decorative elements */
-.travel-inspiration-card::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 5px;
-    height: 100%;
-    background-color: #e74c3c;
-}
+ .reviewer-info p {
+     color: #160d01;
+     font-size: 14px;
+ }
+
+ .rating {
+     color: #ffc107;
+     margin-top: 5px;
+     font-size: 14px;
+ }
+
+ .review-date {
+     color: #999;
+     font-size: 12px;
+     margin-top: 3px;
+ }
+
+ /* Hieroglyphic decorative elements */
+ .decorative-border {
+     height: 10px;
+     margin: 60px auto 0;
+     max-width: 800px;
+     opacity: 0.3;
+ }
+
+ /* style.css */
+ /* body {
+     background-color: #f8f9fa;
+     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+ } */
+
+ /* Navigation styling (assuming you have nav.html) */
+
+
+ /* Form styling */
+ form {
+     background-color: white;
+     padding: 2rem;
+     border-radius: 8px;
+     box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
+     margin-bottom: 3rem;
+ }
+
+ .form-label {
+     font-weight: 600;
+     color: #495057;
+ }
+
+ .form-control {
+     border: 1px solid #ced4da;
+     padding: 0.5rem 0.75rem;
+     border-radius: 4px;
+ }
+
+ .form-control:focus {
+     border-color: #86b7fe;
+     box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+ }
+
+ .btn-dark {
+     background-color: #212529;
+     padding: 0.5rem 1.5rem;
+     font-weight: 500;
+     transition: all 0.3s ease;
+ }
+
+ .btn-dark:hover {
+     background-color: #424649;
+     transform: translateY(-1px);
+ }
+
+ /* Trip cards styling */
+ h2 {
+     margin-bottom: 2rem;
+     color: #212529;
+     font-weight: 600;
+     position: relative;
+     padding-bottom: 0.5rem;
+ }
+
+ h2::after {
+     content: '';
+     position: absolute;
+     left: 0;
+     bottom: 0;
+     width: 60px;
+     height: 3px;
+     background-color: #212529;
+ }
+
+ .trip-card {
+     margin-bottom: 2rem;
+     border: none;
+     border-radius: 8px;
+     overflow: hidden;
+     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+     transition: transform 0.3s ease, box-shadow 0.3s ease;
+     height: 100%;
+ }
+
+ .trip-card:hover {
+     transform: translateY(-5px);
+     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+ }
+
+ .card-img {
+     height: 200px;
+     object-fit: cover;
+     width: 100%;
+ }
+
+ .card-body {
+     padding: 1.5rem;
+ }
+
+ .card-title {
+     font-weight: bold;
+     font-size:2rem ;
+     margin-bottom: 1rem;
+     color: #212529;
+ }
+
+ .card-text {
+     color: #6c757d;
+     margin-bottom: 1.5rem;
+ }
+
+ .text-muted {
+     margin-bottom: 1rem;
+     display: block;
+ }
+
+ /* Buttons in cards */
+ .btn-outline-success,
+ .btn-outline-danger {
+     padding: 0.25rem 0.75rem;
+     font-size: 0.875rem;
+     transition: all 0.3s ease;
+ }
+
+ .btn-outline-success:hover {
+     background-color: #198754;
+     color: white;
+ }
+
+ .btn-outline-danger:hover {
+     background-color: #dc3545;
+     color: white;
+ }
+
+ /* Responsive adjustments */
+ @media (max-width: 768px) {
+     .col-md-4 {
+         flex: 0 0 100%;
+         max-width: 100%;
+     }
+
+     form {
+         padding: 1.5rem;
+     }
+ }
+
+ /* Validation styling */
+ .is-invalid {
+     border-color: #dc3545;
+ }
+
+ .invalid-feedback {
+     color: #dc3545;
+     font-size: 0.875rem;
+     margin-top: 0.25rem;
+ }
+
+ /* Image URL input styling */
+ input[type="text"][name="img"] {
+     width: 100%;
+     padding: 0.5rem 0.75rem;
+     border: 1px solid #ced4da;
+     border-radius: 4px;
+ }
+
+ /* Price input styling */
+ #price {
+     max-width: 200px;
+ }
+
+
+
+ /* Main card container */
+ .travel-inspiration-card {
+     background-color: #ffffff;
+     border-radius: 8px;
+     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+     padding: 30px;
+     max-width: 350px;
+     margin: 20px;
+     font-family: 'Arial', sans-serif;
+     position: relative;
+     overflow: hidden;
+ }
+
+ /* Canada heading */
+ .travel-inspiration-card h1 {
+     color: #2c3e50;
+     font-size: 32px;
+     font-weight: 700;
+     margin-bottom: 25px;
+     letter-spacing: 0.5px;
+ }
+
+ /* Books to inspire your travels subtitle */
+ .travel-inspiration-card h2 {
+     color: #7f8c8d;
+     font-size: 14px;
+     font-weight: 600;
+     text-transform: uppercase;
+     letter-spacing: 1px;
+     margin-bottom: 5px;
+ }
+
+ /* Wanderlust title */
+ .travel-inspiration-card h3 {
+     color: #e74c3c;
+     font-size: 24px;
+     font-weight: 700;
+     margin-bottom: 20px;
+     letter-spacing: 0.5px;
+ }
+
+ /* Lorem ipsum text */
+ .travel-inspiration-card p {
+     color: #34495e;
+     font-size: 16px;
+     line-height: 1.6;
+     margin-bottom: 25px;
+     font-style: italic;
+ }
+
+ /* Keep reading link */
+ .travel-inspiration-card .read-more {
+     color: #e74c3c;
+     font-size: 14px;
+     font-weight: 600;
+     text-decoration: none;
+     text-transform: uppercase;
+     letter-spacing: 1px;
+     display: inline-block;
+     transition: all 0.3s ease;
+ }
+
+ .travel-inspiration-card .read-more:hover {
+     color: #c0392b;
+     transform: translateX(5px);
+ }
+
+ /* Optional decorative elements */
+ .travel-inspiration-card::before {
+     content: "";
+     position: absolute;
+     top: 0;
+     left: 0;
+     width: 5px;
+     height: 100%;
+     background-color: #e74c3c;
+ }
+     .footer-section {
+      background-color: #fff;
+      padding: 50px 0;
+      text-align: center;
+      border-top: 1px solid #eee;
+    }
+    .footer-title {
+      text-transform: uppercase;
+      font-size: 0.9rem;
+      letter-spacing: 2px;
+      margin-bottom: 15px;
+      color: #888;
+    }
+    .footer-icons a {
+      color: #000;
+      margin: 0 10px;
+      font-size: 1.5rem;
+      transition: 0.3s;
+    }
+    .footer-icons a:hover {
+      color: #ff0055;
+    }
+    .footer-bottom {
+      font-size: 0.85rem;
+      color: #aaa;
+      margin-top: 30px;
+      border-top: 1px solid #eee;
+      padding-top: 15px;
+    }

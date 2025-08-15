@@ -18,7 +18,6 @@ def load_admin_data():
     with open("admin.json", "r") as file:
         return json.load(file)
 
-
 @app.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == "GET":
@@ -32,7 +31,6 @@ def login():
         return jsonify({"success": False, "message": "Username and password are required"}), 400
 
     admin_data = load_admin_data()
-
     if username == admin_data["username"] and password == admin_data["password"]:
         session["logged_in"] = True
         session["is_admin"] = True
@@ -131,6 +129,14 @@ def dashboard():
 
     trips = MyTrips.query.order_by(MyTrips.date).all()
     return render_template("dashboard.html", trips=trips)
+# @app.route("/reset-password",methods=["POST","GET"])
+# def reset_password():
+#     if request.method=="POST":
+#         old_password=request.form.get("old_password")
+#         new_password=request.form.get("new_password")
+#         admin_data=load_admin_data()
+
+ 
 
 
 @app.route('/')
@@ -211,6 +217,8 @@ def update(id):
 def logout():
     session.clear()
     return redirect(url_for('index'))
+
+
 if __name__ == "__main__":
     with app.app_context():
         db.create_all()
