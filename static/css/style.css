@@ -139,7 +139,6 @@ body {
     position: relative;
 
 }
-
 .header-text {
     position: absolute;
     top: 50%;
@@ -226,6 +225,42 @@ img {
 
 }
 
+/* Card Hover Effects */
+.service-card {
+  transition: all 0.4s ease;
+  border-radius: 10px !important;
+  overflow: hidden;
+}
+
+.service-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1) !important;
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9f5ff 100%) !important;
+}
+
+/* Icon Hover Animation */
+.icon-wrapper {
+  transition: all 0.3s ease;
+}
+
+.service-card:hover .icon-wrapper {
+  transform: scale(1.1);
+}
+
+.service-card:hover .fa-map-marked-alt { color: #ff6b6b !important; } /* Guided Tours */
+.service-card:hover .fa-ship        { color: #4ecdc4 !important; } /* Boat Trips */
+.service-card:hover .fa-hotel      { color: #ff9f43 !important; } /* Accommodation */
+
+/* Button Hover */
+.btn-primary {
+  transition: all 0.3s ease;
+}
+
+.service-card:hover .btn-primary {
+  background-color: transparent !important;
+  color: #333 !important;
+  border: 2px solid #333 !important;
+}
 /* stars section style  */
 .stats-section {
     padding: 80px 0;
@@ -247,29 +282,22 @@ img {
     transform: translateY(50px);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
-
 .stat-box.animate {
     opacity: 1;
     transform: translateY(0);
 }
-
 .stat-number {
     font-size: 3.5rem;
     font-weight: 700;
     margin-bottom: 10px;
     color: white;
 }
-
 .stat-title {
     font-size: 1.2rem;
     font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 1px;
 }
-
-
-
-
 /* reviews style  */
 .reviews-section {
     width: 100%;
@@ -297,7 +325,6 @@ img {
     max-width: 700px;
     margin: 0 auto;
 }
-
 .reviews-container {
     display: flex;
     flex-wrap: wrap;
@@ -306,7 +333,6 @@ img {
     max-width: 1200px;
     margin: 0 auto;
 }
-
 .card {
     border: none;
     transition: transform 1s;
@@ -315,9 +341,6 @@ img {
 .card:hover {
     transform: translateY(-5px);
 }
-
-
-
 .review-card {
     background: white;
     padding: 30px;
@@ -432,8 +455,6 @@ h2 {
     position: relative;
     padding-bottom: 0.5rem;
 }
-
-
 /* dashbord style  */
 .trip-card {
     margin-bottom: 2rem;
