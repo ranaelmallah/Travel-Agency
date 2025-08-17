@@ -1,101 +1,146 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
-  <link rel="stylesheet" href="../static/css/style.css">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- icon  -->
+    <link rel="icon" href="{{ url_for('static', filename='icon2.jpg') }}">
+    <!-- bootstrap link -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- style link -->
+    <link rel="stylesheet" href="../static/css/style.css">
 </head>
+
 <body class="p-5 ">
-{%include 'nav.html'%}
-{% with messages = get_flashed_messages(with_categories=true) %}
-  {% if messages %}
-    {% for category, message in messages %}
-      <div class="alert alert-{{ category }} m-5">{{ message }}</div>
-    {% endfor %}
-  {% endif %}
-{% endwith %}
-<h1 id="welcome-message" class="m-5 text-center"></h1>
-<a href="{{ url_for('logout') }}" class="text-center" onclick="logout(event)">Logout</a>
-
-<form action="/dashboard" method="POST" enctype="multipart/form-data" novalidate class="m-5">
-
-    <!-- Image Field -->
-    <div class="mb-3">
-        <label for="img" class="form-label">Image:</label>
-        <input type="text" name="img" placeholder="Image URL">
-        <div class="invalid-feedback">Please upload a valid image file</div>
+    <!-- import nav  -->
+    {%include 'nav.html'%}
+    <!-- flash messages -->
+    <div id="flash-container">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        {% for category, message in messages %}
+        <div class="alert alert-{{ category }} m-5">{{ message }}</div>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
     </div>
-
-    <!-- Title Field -->
-    <div class="mb-3">
-        <label for="title" class="form-label">Title:</label>
-        <input type="text" class="form-control" id="title" name="title" required minlength="3" maxlength="200">
-        <div class="invalid-feedback">Title must be between 3-200 characters</div>
-    </div>
-
-    <!-- Date Field -->
-    <div class="mb-3">
-        <label for="date" class="form-label">Date:</label>
-        <input type="date" class="form-control" id="date" name="date" required>
-        <div class="invalid-feedback">Please select a valid date</div>
-    </div>
-
-    <!-- Description Field -->
-    <div class="mb-3">
-        <label for="description" class="form-label">Description:</label>
-        <textarea class="form-control" id="description" name="description" required minlength="10" maxlength="1000" placeholder="Description"></textarea>
-        <div class="invalid-feedback">Description must be 10-1000 characters</div>
-    </div>
-
-    <!-- Location Field -->
-    <div class="mb-3">
-        <label for="location" class="form-label">Location:</label>
-        <input type="text" class="form-control" id="location" name="location" required minlength="3" maxlength="200" placeholder="Location">
-        <div class="invalid-feedback">Location must be 3-200 characters</div>
-    </div>
-
-    <!-- Price Field -->
-    <div class="mb-3">
-        <label for="price" class="form-label">Price:</label>
-        <input type="text" class="form-control" id="price" name="price" required pattern="^\d+(\.\d{1,2})?$" placeholder="Price">
-        <div class="invalid-feedback">Please enter a valid price (e.g. 100 or 99.99)</div>
-    </div>
-
-    <!-- Time Field -->
-    <div class="mb-3">
-        <label for="time" class="form-label">Time (optional):</label>
-        <input type="time" class="form-control" id="time" name="time">
-    </div>
-
-    <button type="submit" class="btn btn-dark">Add Trip</button>
-</form>
-<h2>All Trips</h2>
- <div class="row">
-            {% for trip in trips %}
-            <div class="col-md-4">
-                <div class="card trip-card ">
-                    <img src="{{ trip.img }}" class="card-img " alt="{{ trip.tripTitle }}">
-                    <div class="card-body">
-                        <h5 class="card-title"> title: {{ trip.tripTitle }}</h5>
-                        <p class="text-muted">
-                            <i class="bi bi-geo-alt"></i>location: {{ trip.location }} 
-                            <i class="bi bi-calendar"></i>date: {{ trip.date }} at {{ trip.hour }}
-                        </p>
-                        <p class="card-text">description: {{ trip.description }}</p>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <h5 class="text-dark mb-0"> price:${{ trip.price }}</h5>
-                            <a class="btn btn-outline-success" href="/update/{{trip.id}}" >Edit</a>
-                            <a class="btn btn-outline-danger" href="/delete/{{trip.id}}">Delete</a>
-                        </div>
+    <a href="{{ url_for('logout') }}" class="float-end  text-decoration-none text-light mt-5  btn-dark ">Logout</a>
+    <h1 id="welcome-message" class="m-5 text-center"></h1>
+    <div class="booking-card">
+        <form method="POST" class="m-5" id="tripForm" enctype="multipart/form-data" novalidate>
+            <h3 class="text-center ">Add Trip </h3>
+            <!-- Image Field -->
+            <div class="mb-3 w-50">
+                <label for="img" class="form-label">Image:</label>
+                <input type="text" name="img" placeholder="Image URL" value="{{ request.form.img }}">
+                <div class="invalid-feedback">Please upload a valid image file</div>
+            </div>
+            <!-- Title Field -->
+            <div class="mb-3 ">
+                <label for="title" class="form-label">Title:</label>
+                <input type="text" class="form-control" id="title" name="title" value="{{ request.form.title }}"
+                    required minlength="3">
+                <div class="invalid-feedback">Title must be between 3-200 characters</div>
+            </div>
+            <!-- Date Field -->
+            <div class="mb-3">
+                <label for="date" class="form-label">Date:</label>
+                <input type="date" class="form-control" id="date" name="date" value="{{ request.form.date }}"
+                    min="{{ current_date }}" required>
+                <div class="invalid-feedback">Please select a valid date</div>
+            </div>
+            <!-- Description Field -->
+            <div class="mb-3">
+                <label for="description" class="form-label">Description:</label>
+                <textarea class="form-control" id="description" name="description"
+                    value="{{ request.form.description }}" required minlength="10" maxlength="1000"
+                    placeholder="Description"></textarea>
+                <div class="invalid-feedback">Description must be 10-1000 characters</div>
+            </div>
+            <!-- Location Field -->
+            <div class="mb-3">
+                <label for="location" class="form-label">Location:</label>
+                <input type="text" class="form-control" id="location" name="location"
+                    value="{{ request.form.location }}" required minlength="3" maxlength="200" placeholder="Location">
+                <div class="invalid-feedback">Location must be 3-200 characters</div>
+            </div>
+            <!-- Price Field -->
+            <div class="mb-3">
+                <label for="price" class="form-label">Price:</label>
+                <input type="text" class="form-control" id="price" name="price" value="{{ request.form.price }}"
+                    required pattern="^\d+(\.\d{1,2})?$" placeholder="Price">
+                <div class="invalid-feedback">Please enter a valid price (e.g. 100 or 99.99)</div>
+            </div>
+            <!-- Time Field -->
+            <div class="mb-3">
+                <label for="time" class="form-label">Time (optional):</label>
+                <input type="time" class="form-control" id="time" name="time" value="{{ request.form.time }}" required>
+            </div>
+            <button type="submit" class="btn btn-dark">Add Trip</button>
+        </form>
+    </div> 
+    <!-- added trips  -->
+    <h2>All Trips</h2>
+    <div class="row">
+        {% for trip in trips %}
+        <div class="col-md-4">
+            <div class="card trip-card ">
+                <img src="{{ trip.img }}" class="card-img " alt="{{ trip.tripTitle }}">
+                <div class="card-body">
+                    <h5 class="card-title"> title: {{ trip.title }}</h5>
+                    <p class="text-muted">
+                        <i class="bi bi-geo-alt"></i><b>location:</b> {{ trip.location }}
+                    </p>
+                    <p class="text-muted"><i class="bi bi-calendar"></i> <b>date:</b> {{ trip.date }} at {{trip.time}}
+                    </p>
+                    <p class="card-text"><b>description:</b> {{ trip.description }}</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h5 class="text-dark mb-0"> price:${{ trip.price }}</h5>
+                        <a class="btn btn-outline-success" href="/update/{{trip.id}}">Edit</a>
+                        <a class="btn btn-outline-danger" href="/delete/{{trip.id}}">Delete</a>
                     </div>
                 </div>
             </div>
-            {% endfor %}
         </div>
-
+        {% endfor %}
+    </div>
+    <div id="flash-messages"></div>
+    <!-- user who book -->
+    <h3 class="mt-5">User Bookings</h3>
+    <table class="table table-striped table-hover p-5 border-1">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Trip ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Address</th>
+                <th>Travel Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for booking in bookings %}
+            <tr>
+                <td>{{ loop.index }}</td>
+                <td>{{ booking.trip_id }}</td>
+                <td>{{ booking.name }}</td>
+                <td>{{ booking.email }}</td>
+                <td>{{ booking.phone }}</td>
+                <td>{{ booking.address }}</td>
+                <td>{{ booking.date }}</td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="7" class="text-center">No bookings yet.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
     <script src="../static/js/crud.js"></script>
-     <script  src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"> </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"> </script>
 </body>
+
 </html>

@@ -26,7 +26,6 @@ class MyTrips(db.Model):
             return "No image URL provided"
         if not re.match(r'^https?:\/\/.*\.(png|jpg|jpeg|gif)$', self.img, re.IGNORECASE):
             return "Invalid image URL format"
-
         # Title
         if not (3 <= len(self.title) <= 200):
             return "Title must be 3-200 characters"

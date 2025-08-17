@@ -1,6 +1,5 @@
 body{
     padding: 0px;
-    margin: 0px;
     box-sizing: border-box;
     font-family: 'Josefin Sans', sans-serif;
 }
@@ -20,7 +19,7 @@ body{
 }
 input{
     padding: .5rem 3rem;
-    margin-bottom: .7rem;
+    margin:13px;
     outline: none;
 }
 input:focus{
@@ -28,7 +27,8 @@ input:focus{
 }
 button{
     background-color: black;
-    padding: .6rem 8rem;
+    padding: .6rem 7.5rem;
+    margin-top: 10px;
     color: white;
 }
  /* Responsive adjustments */
