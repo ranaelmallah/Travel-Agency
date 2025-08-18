@@ -1,4 +1,4 @@
-**TravelMate – Project Summary**
+**TravelMate–Project Summary**
 
 TravelMate is a web application designed to manage a travel agency’s operations, 
 providing functionalities for both admins and users. Admins can add and manage trips using SQLAlchemy,
@@ -43,7 +43,7 @@ Line number(s) for the class definition: 9-46
 Name of two properties: id,title,description,date, time ,location,price,img  
    
 Name of two method: validate()
-File name and line numbers where the methods are used: password_routes.py, Name of two methods: hash_password(), format_data() , update_user_data(),lines 45-60
+File name and line numbers where the methods are used: app.py, Name of two methods: validate() , update_user_data(),lines 137,200
 - It makes use of JavaScript in the front end and uses the localStorage of the web browser.
 - It uses modern JavaScript (for example, let and const rather than var).
 - It makes use of the reading and writing to the same file feature.
