@@ -10,7 +10,9 @@
     <!-- bootstrap link -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- style link -->
-    <link rel="stylesheet" href="../static/css/style.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/booking.css') }}">
+
 </head>
 
 <body class="p-5 ">
@@ -21,16 +23,18 @@
         {% with messages = get_flashed_messages(with_categories=true) %}
         {% if messages %}
         {% for category, message in messages %}
-        <div class="alert alert-{{ category }} m-5">{{ message }}</div>
+        <div class="alert alert-{{ category }} w-50 m-auto mt-5">{{ message }}</div>
         {% endfor %}
         {% endif %}
         {% endwith %}
     </div>
     <a href="{{ url_for('logout') }}" class="float-end  text-decoration-none text-light mt-5  btn-dark ">Logout</a>
     <h1 id="welcome-message" class="m-5 text-center"></h1>
-    <div class="booking-card">
+    <div class="text-center my-4"><button class="btn btn-dark ps-4 m-4" onclick="toggleForm()">Add Trip</button></div>
+    
+    <div id="tripFormContainer" class="booking-card" style="display:none;">
         <form method="POST" class="m-5" id="tripForm" enctype="multipart/form-data" novalidate>
-            <h3 class="text-center ">Add Trip </h3>
+            <h3 class="text-center fw-bold ">Add Trip </h3>
             <!-- Image Field -->
             <div class="mb-3 w-50">
                 <label for="img" class="form-label">Image:</label>
@@ -75,70 +79,103 @@
             </div>
             <!-- Time Field -->
             <div class="mb-3">
-                <label for="time" class="form-label">Time (optional):</label>
+                <label for="time" class="form-label">Time :</label>
                 <input type="time" class="form-control" id="time" name="time" value="{{ request.form.time }}" required>
             </div>
             <button type="submit" class="btn btn-dark">Add Trip</button>
         </form>
-    </div> 
+    </div>
     <!-- added trips  -->
+    {%if trips %}
     <h2>All Trips</h2>
     <div class="row">
         {% for trip in trips %}
-        <div class="col-md-4">
-            <div class="card trip-card ">
-                <img src="{{ trip.img }}" class="card-img " alt="{{ trip.tripTitle }}">
-                <div class="card-body">
-                    <h5 class="card-title"> title: {{ trip.title }}</h5>
-                    <p class="text-muted">
-                        <i class="bi bi-geo-alt"></i><b>location:</b> {{ trip.location }}
+        <div class="col-md-4 my-3">
+            <div class="card trip-card shadow-lg border-0 h-100 rounded-4 overflow-hidden">
+                <!-- Card Image -->
+                <img src="{{ trip.img }}" class="card-img-top trip-img" alt="{{ trip.tripTitle }}">
+
+                <!-- Card Body -->
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title text-dark-emphasis fw-bold text-truncate">
+                        {{ trip.title }}
+                    </h5>
+
+                    <p class="text-muted mb-1">
+                        <i class="bi bi-geo-alt-fill text-danger"></i>
+                        <span class="fw-semibold">Location:</span> {{ trip.location }}
                     </p>
-                    <p class="text-muted"><i class="bi bi-calendar"></i> <b>date:</b> {{ trip.date }} at {{trip.time}}
+
+                    <p class="text-muted mb-1">
+                        <i class="bi bi-calendar-event text-success"></i>
+                        <span class="fw-semibold">Date:</span> {{ trip.date }} at {{ trip.time }}
                     </p>
-                    <p class="card-text"><b>description:</b> {{ trip.description }}</p>
-                    <div class="d-flex justify-content-between align-items-center">
-                        <h5 class="text-dark mb-0"> price:${{ trip.price }}</h5>
-                        <a class="btn btn-outline-success" href="/update/{{trip.id}}">Edit</a>
-                        <a class="btn btn-outline-danger" href="/delete/{{trip.id}}">Delete</a>
+
+                    <p class="card-text small text-secondary">
+                        <span class="fw-semibold">Description:</span> {{ trip.description }}
+                    </p>
+
+                    <div class="mt-auto d-flex justify-content-between align-items-center border-top pt-3">
+                        <h5 class="text-dark fw-bold mb-0">
+                            <span class="fw-semibold">cost:</span> ${{ trip.price }}
+                        </h5>
+                        <div class="d-flex gap-2">
+                            <a class="btn btn-sm btn-outline-primary px-3" href="/update/{{trip.id}}">
+                                <i class="bi bi-pencil-square"></i> Edit
+                            </a>
+                            <a class="btn btn-sm btn-outline-danger px-3" href="/delete/{{trip.id}}">
+                                <i class="bi bi-trash"></i> Delete
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
         {% endfor %}
     </div>
+
+    {% else %}
+    <div class="d-flex flex-column justify-content-center align-items-center w-100" style="height: 300px;">
+        <p class="text-muted fs-4 mt-3">No trips added yet.</p>
+    </div>
+    {% endif %}
+
     <div id="flash-messages"></div>
     <!-- user who book -->
-    <h3 class="mt-5">User Bookings</h3>
-    <table class="table table-striped table-hover p-5 border-1">
-        <thead>
-            <tr>
-                <th>#</th>
-                <th>Trip ID</th>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Phone</th>
-                <th>Address</th>
-                <th>Travel Date</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for booking in bookings %}
-            <tr>
-                <td>{{ loop.index }}</td>
-                <td>{{ booking.trip_id }}</td>
-                <td>{{ booking.name }}</td>
-                <td>{{ booking.email }}</td>
-                <td>{{ booking.phone }}</td>
-                <td>{{ booking.address }}</td>
-                <td>{{ booking.date }}</td>
-            </tr>
-            {% else %}
-            <tr>
-                <td colspan="7" class="text-center">No bookings yet.</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+    <div class="text-center my-4"><button class="btn btn-dark m-5" onclick="toggleUsers()">View Users booking</button></div>
+    <div id="userTableContainer" style="display:none;">
+        <h3 class="mt-5">User Bookings</h3>
+        <div class="table-responsive">
+            <table class="table table-striped table-hover p-5 border-1">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Trip ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Address</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for booking in bookings %}
+                    <tr>
+                        <td>{{ loop.index }}</td>
+                        <td>{{ booking.trip_id }}</td>
+                        <td>{{ booking.name }}</td>
+                        <td>{{ booking.email }}</td>
+                        <td>{{ booking.phone }}</td>
+                        <td>{{ booking.address }}</td>
+                    </tr>
+                    {% else %}
+                    <tr>
+                        <td colspan="6" class="text-center">No bookings yet.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
     <script src="../static/js/crud.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"> </script>
 </body>

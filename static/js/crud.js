@@ -67,3 +67,14 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 });
+
+// add trip and user button  
+function toggleForm() {
+            let form = document.getElementById("tripFormContainer");
+            form.style.display = (form.style.display === "none") ? "block" : "none";
+        }
+
+        function toggleUsers() {
+            let table = document.getElementById("userTableContainer");
+            table.style.display = (table.style.display === "none") ? "block" : "none";
+        }
