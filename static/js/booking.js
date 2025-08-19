@@ -1,5 +1,4 @@
 const form = document.getElementById('bookingForm');
-
 const nameInput = form.querySelector('input[name="name"]');
 const emailInput = form.querySelector('input[name="email"]');
 const phoneInput = form.querySelector('input[name="phone"]');
