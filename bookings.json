@@ -68,12 +68,6 @@
         "email": "sara@gmail.com",
         "phone": "12345678",
         "address": "222desouk"
-    },
-    {
-        "trip_id": "1",
-        "name": "sara",
-        "email": "sara@gmail.com",
-        "phone": "1234567",
-        "address": "9992alex"
     }
+  
 ]

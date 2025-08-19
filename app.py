@@ -39,7 +39,6 @@ def save_bookings(bookings):
     with open(BOOKINGS_FILE, "w") as f:
         json.dump(bookings, f, indent=4)
 
-
 @app.context_processor
 def inject_role():
     return dict(is_admin=session.get('is_admin', False))
@@ -187,8 +186,7 @@ def update(id):
                 except ValueError:
                     flash('Invalid time format', 'danger')
                     return redirect(request.url)
-                
-
+            
         trip.title = request.form.get('title', '').strip()
         trip.description = request.form.get('description', '').strip()
         trip.date = date
@@ -213,6 +211,7 @@ def update(id):
 
     
     return render_template("update_trip.html", trip=trip)
+
 #  ============================user-book route============================
 
 @app.route("/book", methods=["GET", "POST"])
@@ -224,6 +223,7 @@ def book():
         email = request.form.get("email", "").strip()
         phone = request.form.get("phone", "").strip()
         address = request.form.get("address", "").strip()
+
       
         if not re.match(r"^[A-Za-z\s]{3,}$", name):
             flash("Name must be at least 3 letters and contain only letters and spaces.", "danger")
@@ -241,10 +241,13 @@ def book():
             flash("Address must be at least 5 characters long.", "danger")
             return redirect(request.url)
 
-        
-
         # Save booking including trip_id
         bookings = load_bookings()
+        for booking in bookings:
+
+            if booking["trip_id"] == trip_id and booking["email"].lower() == email.lower():
+                flash(" You already booked this trip with this email.", "danger")
+                return redirect(url_for("book", trip_id=trip_id))
         bookings.append({
             "trip_id": trip_id,   
             "name": name,
@@ -255,11 +258,15 @@ def book():
         })
         save_bookings(bookings)
 
-        flash("Booking successful!", "success")
-        return redirect(url_for("index", trip_id=trip_id))
+
+        return redirect(url_for("booking_success"))
 
     return render_template("book.html", trip_id=trip_id)
+#  ============================ success- booking ============================
 
+@app.route("/booking-success")
+def booking_success():
+    return render_template("booking_success.html")
 #  ============================logout  route============================
 @app.route("/logout")
 def logout():
