@@ -9,9 +9,8 @@
     <!-- bootstrap links -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- css style  -->
-    <link rel="stylesheet" href="../static/css/style.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
-
 <body class="p-5 mt-5">
     <!-- import navbar -->
     {%include 'nav.html'%}
@@ -19,13 +18,12 @@
     {% with messages = get_flashed_messages(with_categories=true) %}
     {% if messages %}
     {% for category, message in messages %}
-    <div class="alert alert-{{ category }}">{{ message }}</div>
+    <div class="alert alert-{{ category }} w-50 m-auto">{{ message }}</div>
     {% endfor %}
     {% endif %}
     {% endwith %}
-
     <div class="container pt-4">
-        <form method="POST">
+        <form method="POST" class="booking-card">
             <h2 class="mt-3 text-center">Edit Trip</h2>
             <div class="mb-3">
                 <label>Title</label>
@@ -58,8 +56,5 @@
             <button type="submit" class="btn btn-dark">Update Trip</button>
         </form>
     </div>
-    
 </body>
 </html>
-
-
