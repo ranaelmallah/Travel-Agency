@@ -12,16 +12,18 @@
     <!-- css links -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/auth.css') }}">
 </head>
-<body> 
+
+<body>
     {%include 'nav.html'%}
-    <div class=" text-light p-5 text-center  section-hrader mt-5"> ADMIN  LOGIN</div>
+    <div class="  login-header mt-5"> ADMIN LOGIN</div>
     <div class="login-container">
-        <input type="text" id="username" placeholder="Username" >
-        <input type="password" id="password"  placeholder="Password" class="my-2">
+        <input type="text" id="username" placeholder="Username">
+        <input type="password" id="password" placeholder="Password" class="my-2">
         <button class="" onclick="login()">Login</button>
         <p id="message"></p>
     </div>
     <script src="../static/js/auth.js">
     </script>
 </body>
+
 </html>
