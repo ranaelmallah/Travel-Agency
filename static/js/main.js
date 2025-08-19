@@ -58,7 +58,6 @@ document.addEventListener('DOMContentLoaded', function () {
         startSlider();
     });
 
-
     slider.addEventListener('mouseenter', pauseSlider);
     slider.addEventListener('mouseleave', startSlider);
 
@@ -82,7 +81,6 @@ document.addEventListener('DOMContentLoaded', function () {
         }, 20);
     }
 
-    // Intersection Observer to trigger animation when visible
     const observer = new IntersectionObserver(entries => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -99,4 +97,26 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     statBoxes.forEach(box => observer.observe(box));
+});
+// footer toster 
+document.addEventListener("DOMContentLoaded", () => {
+    const form = document.getElementById("subscribeForm");
+    const emailInput = document.getElementById("email");
+    const toast = document.getElementById("toast");
+
+    if (form && emailInput && toast) {
+        form.addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            const email = emailInput.value.trim();
+
+            if (!email) return;
+            localStorage.setItem("subscribedEmail", email);
+            toast.style.display = "block";
+            setTimeout(() => {
+                toast.style.display = "none";
+            }, 3000);
+            emailInput.value = "";
+        });
+    }
 });

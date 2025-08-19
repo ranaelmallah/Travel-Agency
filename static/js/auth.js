@@ -36,9 +36,4 @@
                console.error("Error:", error);
            });
    }
-
-   function logout(event) {
-       event.preventDefault();
-       window.location.href = event.currentTarget.href;
-   }
    localStorage.clear();
