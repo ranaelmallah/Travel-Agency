@@ -5,12 +5,11 @@ body {
 }
 
 .trips-header {
-    background-image: url("https://images.pexels.com/photos/358332/pexels-photo-358332.jpeg");
+  background-image: url("https://images.pexels.com/photos/358332/pexels-photo-358332.jpeg");
   height: 70vh;
   background-size: cover;
   background-position: center;
   position: relative;
-  
 }
 
 .header-text {
